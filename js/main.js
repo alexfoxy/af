@@ -1,34 +1,3 @@
-// var lastKnownScrollY = 0;
-// var currentScrollY = 0;
-// var ticking = false;
-// var idOfHeader = 'navcontainer';
-// var eleHeader = null;
-// const classes = {
-//   pinned: 'pin',
-//   unpinned: 'unpin',
-// };
-// function onScroll() {
-//   currentScrollY = window.pageYOffset;
-//   if (currentScrollY < lastKnownScrollY) {
-//     pin();
-//   } else if (currentScrollY > lastKnownScrollY) {
-//     unpin();
-//   }
-//   lastKnownScrollY = currentScrollY;
-// }
-// function pin() {
-//   if (eleHeader.classList.contains(classes.unpinned)) {
-//     eleHeader.classList.remove(classes.unpinned);
-//     eleHeader.classList.add(classes.pinned);
-//   }
-// }
-// function unpin() {
-//   if (eleHeader.classList.contains(classes.pinned) || !eleHeader.classList.contains(classes.unpinned)) {
-//     eleHeader.classList.remove(classes.pinned);
-//     eleHeader.classList.add(classes.unpinned);
-//   }
-// }
-
 function selectNav(hash) {
     var anchorlinks = document.querySelectorAll('a[href^="#"]')
  
@@ -78,7 +47,7 @@ function setUpExpandButtons() {
 window.gen_mail_to_link = function(lhs,rhs,subject) {
     document.write("<a id=contactMe href=\"mailto");
     document.write(":" + lhs + "@");
-    document.write(rhs + "?subject=" + subject + "\">Email me<\/a>");
+    document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/a>");
 }
 
 
@@ -199,7 +168,67 @@ var positionData = {
         translateX(${ everpolate.linear(y, p, [-150,-20,0]) }px) 
         translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
       `
-    }
+    },
+    freq1: function(el, y) {
+      const triggerEl = document.getElementById("freq")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [-150,-20,0]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-400]) }px)
+      `
+    },
+    freq2: function(el, y) {
+      const triggerEl = document.getElementById("freq")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [-150,-20,20]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
+      `
+    },
+    junglator1: function(el, y) {
+      const triggerEl = document.getElementById("junglator")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [0,0,50]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
+      `
+    },
 
 }
 
@@ -221,23 +250,43 @@ window.onload = function() {
     const isMobile = ratio<0.75
 
     if(isMobile) {
-        document.body.classList.add("mobile")
+      document.body.classList.add("mobile")
+    } else {
+      document.body.classList.add("desktop")
     }
 
     document.body.classList.add("loaded")
 
     setUpExpandButtons()
     setUpAnchorLinks()
+
+    const projectsEl = document.getElementById("projects")
+    const contactEl = document.getElementById("contact")
     
     document.addEventListener('scroll', function(x) {
         if(!isMobile) updateObjs(window.scrollY)
+
+        if(window.scrollY > 50) {
+          document.body.classList.add("scrolled")
+        } else {
+          document.body.classList.remove("scrolled")
+        }
+
+        if(window.scrollY > contactEl.offsetTop-(window.innerHeight/2)) {
+          selectNav("#contact")
+        } else if(window.scrollY > projectsEl.offsetTop-(window.innerHeight/2)) {
+          selectNav("#projects")
+        } else {
+          selectNav("#me")
+        }
+
+        
     }, false)
 
     if(!isMobile) updateObjs(window.scrollY)
 
   
-    // let projectsEl = document.getElementById("projects").getBoundingClientRect()
-    // let contactEl = document.getElementById("contact").getBoundingClientRect()
+
 
     // document.addEventListener('scroll', function(x) {
     //     for(var o in positionData) {

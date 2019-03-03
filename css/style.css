@@ -1,5 +1,6 @@
 body {
-
+    /*background: url(/img/bg.png);*/
+    /*background-size: 4pt;*/
 }
 
 #logo {
@@ -147,8 +148,8 @@ li {
 }
 
 #myface {
-    width: 50%;
-    height: 50%;
+    /*width: 200pt;*/
+    /*height: 200pt;*/
 }
 
 #myface img {
@@ -158,36 +159,69 @@ li {
 }
 
 #links {
-    width: 49%;
+    /*position: relative;*/
+    /*top: 25pt;*/
+    /*text-align: right;*/
+    /*margin-left: -190pt;*/
+    /*padding-right: 180pt;*/
 }
 
 #links a {
+    font-size: 2rem;
+    color: white;
+    padding: 5pt;
     display: block;
-    font-size: 2.2rem;
+    text-align: center;
+    margin: 10pt 0;
+    text-decoration: none;
+}
+
+
+#links a:hover {
+    opacity: 0.7;
+}
+
+.desktop #links a {
+    display: table;
+    padding: 6pt 11pt;
 }
 
 #contact {
-    padding-bottom: 100pt;
+    /*padding-bottom: 50pt;*/
 }
 
 #contactMe {
-    font-size: 4rem !important;
+    font-size: 4rem;
     font-weight: 800;
-    margin-top: 10%;
-    margin-left: -50pt;
+    background: linear-gradient(45deg, #1d48bac4, #7000ffab);
+    /*margin-left: -100pt;*/
+}
+
+.desktop #contactMe  {
+    font-size: 3rem;
 }
 
 #bitBucketLink {
-    margin-left: 20%;
+    background: linear-gradient(45deg, #37e3cb9c, #006dffbf);
+    /*margin-left: 210pt;*/
+    /*margin-top: 75pt;*/
 }
 
 #gitHubLink {
-    margin-left: 5%;
+    background: linear-gradient(45deg, #f0267366, #e17458de);
+    /*margin-left: 190pt;*/
+    /*margin-top: 110pt;*/
 }
 
 #instagramLink {
-    margin-left: 30%;
+    background: linear-gradient(45deg, #eb686dc4, #7000ffab);
+    /*margin-left: 230pt;*/
+    /*margin-top: 145pt;*/
 }
+
+/*.mobile #links {
+    font-size: 4vw;
+}*/
 
 .projectTabs {
     margin-bottom: 1em;
@@ -271,9 +305,12 @@ h6 {
 
 .collapsableList {
     overflow: hidden;
-    max-height: 80pt;
     position: relative;
     transition: max-height 500ms ease-in-out;
+}
+
+.mobile .collapsableList {
+    max-height: 80pt;
 }
 
 .collapsableList.visible {
@@ -290,10 +327,14 @@ h6 {
 
 .expandButton {
     margin-bottom: 2em;
-    display: block;
+    display: none;
     text-decoration: underline;
     color: #ff37a5;
     cursor: pointer;
+}
+
+.mobile .expandButton {
+    display: block;
 }
 
 .expandButton:hover {
@@ -304,6 +345,33 @@ h6 {
     mix-blend-mode: overlay;
     position: absolute;
     /*transition: all 500ms ease-in-out;*/
+}
+
+.screenShotContainer {
+    max-height: 70vh;
+    overflow: hidden;
+}
+
+.mobile .navbuffer {
+    display: none;
+}
+
+#wave {
+    background: url(/img/wave.png);
+    height: 135px;
+    background-size: 180px;
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    margin-top: 50pt;
+}
+
+.mobile #wave {
+    background: url(/img/wave.png);
+    height: 75px;
+    background-size: 95px;
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    margin-top: 20pt;
 }
 
 #block1 {
@@ -371,12 +439,12 @@ h6 {
 
 #chillscape1 {
     background: url(/img/chillscape-screen1.png);
-    height: 400pt;
-    width: 200pt;
+    height: 440pt;
+    width: 220pt;
     position: absolute;
-    left: 20pt;
+    left: 0;
     background-size: contain;
-    margin-top: 40pt;
+    margin-top: 35pt;
     z-index: 200;
     background-repeat: no-repeat;
     opacity: 0;
@@ -384,12 +452,12 @@ h6 {
 
 #noiz1 {
     background: url(/img/noiz-screen1.png);
-    height: 400pt;
-    width: 200pt;
+    height: 440pt;
+    width: 210pt;
     position: absolute;
-    left: 20pt;
+    left: 0pt;
     background-size: contain;
-    margin-top: 40pt;
+    margin-top: 63pt;
     z-index: 200;
     background-repeat: no-repeat;
     opacity: 0;
@@ -402,7 +470,46 @@ h6 {
     position: absolute;
     left: 200pt;
     background-size: contain;
-    margin-top: 60pt;
+    margin-top: 95pt;
+    z-index: 100;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+#freq1 {
+    background: url(/img/freq-graphic.png);
+    height: 210pt;
+    width: 210pt;
+    position: absolute;
+    left: 0pt;
+    background-size: contain;
+    margin-top: 140pt;
+    z-index: 200;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+#freq2 {
+    background: url(/img/freq-screenshot1.png);
+    height: 340pt;
+    width: 210pt;
+    position: absolute;
+    left: 125pt;
+    background-size: contain;
+    margin-top: 25pt;
+    z-index: 100;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+#junglator1 {
+    background: url(/img/junglator-screenshot1.png);
+    height: 400pt;
+    width: 250pt;
+    position: absolute;
+    left: 20pt;
+    background-size: contain;
+    margin-top: 35pt;
     z-index: 100;
     background-repeat: no-repeat;
     opacity: 0;
