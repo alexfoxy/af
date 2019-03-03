@@ -42,69 +42,7 @@ function selectNav(hash) {
     }
 }
 
-function showGraphics(mode) {
-    const block1 = document.getElementById("block1")
-    const block2 = document.getElementById("block2")
-    const block3 = document.getElementById("block3")
-    const block4 = document.getElementById("block4")
-    const block5 = document.getElementById("block5")
-
-    if(mode === 'scroll-up') {
-        block1.style.opacity = 1
-        block1.style.transform = "translate(0,0)"
-
-        block2.style.opacity = 1
-        block2.style.transform = "translate(0,0)"
-
-        block3.style.opacity = 1
-        block3.style.transform = "translate(0,0)"
-
-        block4.style.opacity = 1
-        block4.style.transform = "scale(1,1)"
-
-        block5.style.opacity = 1
-        block5.style.transform = "scale(1,1)"
-    }
-
-    if(mode === 'scroll-down') {
-        block1.style.opacity = 0
-        block1.style.transform = "translate(-50pt,0)"
-
-        block2.style.opacity = 0
-        block2.style.transform = "translate(0,-50pt)"
-
-        block3.style.opacity = 0
-        block3.style.transform = "translate(50pt,0)"
-
-        block4.style.opacity = 0
-        block4.style.transform = "scale(0.3,0.3)"
-
-        block5.style.opacity = 0
-        block5.style.transform = "scale(0.3,0.3)"
-    }
-
-    // const krft1 = document.getElementById("krft1")
-    // krft1.style.opacity = 1
-    // krft1.style.transform = "translate(20,0)"
-}
-
-
-window.gen_mail_to_link = function(lhs,rhs,subject) {
-    document.write("<a id=contactMe href=\"mailto");
-    document.write(":" + lhs + "@");
-    document.write(rhs + "?subject=" + subject + "\">Email me<\/a>");
-}
-
-window.onload = function() {
-    const ratio = window.innerWidth/window.innerHeight
-    const isMobile = ratio<0.75
-    if(isMobile) {
-        document.body.classList.add("mobile")
-    }
-
-    document.body.classList.add("loaded")
-
-
+function setUpAnchorLinks() {
     var anchorlinks = document.querySelectorAll('a[href^="#"]')
  
     for (var item of anchorlinks) { 
@@ -119,7 +57,9 @@ window.onload = function() {
             e.preventDefault()
         })
     }
+}
 
+function setUpExpandButtons() {
     var expandButtons = document.querySelectorAll('.expandButton')
  
     for (var button of expandButtons) { 
@@ -130,75 +70,189 @@ window.onload = function() {
             list.classList.toggle("visible")
 
             b.innerHTML = list.classList.contains("visible") ? "- less" : "+ more"
-
-
-            // for(var t2 of tabs) {
-            //     t2.classList.remove("selected")
-            // }
-
-            // e.target.classList.add("selected")
-            // var screenId = parseInt(e.target.getAttribute('screen-id'))
-
-            // const screensContainer = e.target.parentElement.parentElement.querySelector(".projectScreensInner")
-            
-            // for(var screen of screensContainer.children) {
-            //     screen.classList.remove("visible")
-            // }
-
-            // screensContainer.children[screenId].classList.add("visible")
         })
     }
-
-    // var tabContainers = document.querySelectorAll('.projectTabs')
- 
-    // for (var tabContainer of tabContainers) { 
-    //     const tabs = tabContainer.children
-
-    //     for(var t of tabs) {
-    //         t.addEventListener('click', function(e) {
-    //             for(var t2 of tabs) {
-    //                 t2.classList.remove("selected")
-    //             }
-
-    //             e.target.classList.add("selected")
-    //             var screenId = parseInt(e.target.getAttribute('screen-id'))
-
-    //             const screensContainer = e.target.parentElement.parentElement.querySelector(".projectScreensInner")
-                
-    //             for(var screen of screensContainer.children) {
-    //                 screen.classList.remove("visible")
-    //             }
-
-    //             screensContainer.children[screenId].classList.add("visible")
-    //         })
-    //     }
-    // }
-
-    let projectsEl = document.getElementById("projects").getBoundingClientRect()
-    let contactEl = document.getElementById("contact").getBoundingClientRect()
-
-    document.addEventListener('scroll', function(x) {
-        if(window.scrollY > 300) {
-            document.body.classList.add("scrolled")
-            showGraphics('scroll-down')
-        } else {
-            document.body.classList.remove("scrolled")
-            showGraphics('scroll-up')
-        }
-
-        if(window.scrollY > (contactEl.top - (window.innerHeight/2))) {
-            selectNav("#contact")
-        } else if(window.scrollY > (projectsEl.top - (window.innerHeight/2))) {
-            selectNav("#projects")
-        } else {
-            selectNav("#me")
-        }
-    }, false);
-
-    showGraphics('scroll-down')
-
-    setTimeout(() => {
-        showGraphics('scroll-up')
-    }, 500)
 }
 
+
+window.gen_mail_to_link = function(lhs,rhs,subject) {
+    document.write("<a id=contactMe href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\">Email me<\/a>");
+}
+
+
+var positionData = {
+    block1: function(el, y) {
+      const o = everpolate.linear(y, [0,50,400], [1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,200]) }px)`
+    },
+    block2: function(el, y) {
+      const o = everpolate.linear(y, [0,50,400], [1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+      el.style.transform = `translateY(${ everpolate.linear(y, [0,400], [0,-200]) }px)`
+    },
+    block3: function(el, y) {
+      const o = everpolate.linear(y, [0,50,400], [1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,-200]) }px)`
+    },
+    block4: function(el, y) {
+      const o = everpolate.linear(y, [0,50,400], [1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+      el.style.transform = `scale(${ everpolate.linear(y, [0,400], [1,0.5]) })`
+    },
+    krft1: function(el, y) {
+      const triggerEl = document.getElementById("krft")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `translateY(${ everpolate.linear(y, p, [100,100,-100]) }px)`
+    },
+    chillscape1: function(el, y) {
+      const triggerEl = document.getElementById("chillscape")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [0,0,100]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
+      `
+    },
+    noiz1: function(el, y) {
+      const triggerEl = document.getElementById("noiz")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [0,0,50]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
+      `
+    },
+    noiz2: function(el, y) {
+      const triggerEl = document.getElementById("noiz")
+      const offsetTop = triggerEl.offsetTop
+
+      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
+
+      const o = everpolate.linear(y, a, [0,0,1,1,0])
+      if(o <= 0) {
+        el.style.opacity = 0
+        return
+      }
+
+      el.style.opacity = o
+
+      const p = [0,offsetTop-300,offsetTop+300]
+      el.style.transform = `
+        translateX(${ everpolate.linear(y, p, [-150,-20,0]) }px) 
+        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
+      `
+    }
+
+}
+
+const els = {
+
+}
+
+function updateObjs(y) {
+    for(var o in positionData) {
+      els[o] = els[o] || document.getElementById(o)
+      var fn = positionData[o]
+      fn(els[o], y)
+    }
+}
+
+
+window.onload = function() {
+    const ratio = window.innerWidth/window.innerHeight
+    const isMobile = ratio<0.75
+
+    if(isMobile) {
+        document.body.classList.add("mobile")
+    }
+
+    document.body.classList.add("loaded")
+
+    setUpExpandButtons()
+    setUpAnchorLinks()
+    
+    document.addEventListener('scroll', function(x) {
+        if(!isMobile) updateObjs(window.scrollY)
+    }, false)
+
+    if(!isMobile) updateObjs(window.scrollY)
+
+  
+    // let projectsEl = document.getElementById("projects").getBoundingClientRect()
+    // let contactEl = document.getElementById("contact").getBoundingClientRect()
+
+    // document.addEventListener('scroll', function(x) {
+    //     for(var o in positionData) {
+    //       var el = document.getElementById(o)
+    //       var fn = positionData[o]
+    //       fn(el, window.scrollY)
+    //     }
+
+    //     if(window.scrollY > (contactEl.top - (window.innerHeight/2))) {
+    //         selectNav("#contact")
+    //     } else if(window.scrollY > (projectsEl.top - (window.innerHeight/2))) {
+    //         selectNav("#projects")
+    //     } else {
+    //         selectNav("#me")
+    //     }
+    // }, false);
+
+}

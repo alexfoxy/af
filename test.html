@@ -1,0 +1,81 @@
+<style>
+  body,html{margin:0;padding:0;}
+
+
+.object {
+  margin-left: 250px;
+  height: 100px;
+  width: 300px;
+  top: 200px;
+  position: fixed;
+  background: red;
+  mix-blend-mode: overlay;
+}
+
+#object2 {
+  background: green;
+}
+
+#object3 {
+  background: blue;
+}
+
+.parallax {
+  height: 20000pt;
+}
+
+
+</style>
+
+
+<body>
+<script src="js/everpolate.js"></script>
+
+<p style="padding-top: 300pt">Hello</p>
+
+<div class="parallax">
+  <div class="object" id="object1"'></div>
+  <div class="object" id="object2"'></div>
+  <div class="object" id="object3"'></div>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+
+  var positionData = {
+    blueBlock: function(el, y) {
+      el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
+      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,-400]) }px)`
+    },
+    // object2: function(el, y) {
+    //   el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
+    //   el.style.transform = `translateY(${ everpolate.linear(y, [0,400], [0,-400]) }px)`
+    // },
+    // object3: function(el, y) {
+    //   el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
+    //   el.style.transform = `rotate(${ everpolate.linear(y, [0,400], [0,-400]) }deg)`
+    // }
+  }
+
+  const els = {
+
+  }
+
+  function updateObjs() {
+    for(var o in positionData) {
+      els[o] = els[o] || document.getElementById(o)
+      var fn = positionData[o]
+      fn(els[o], window.scrollY)
+    }
+  }
+
+  document.addEventListener('scroll', function(x) {
+    updateObjs()
+  }, false);
+
+  updateObjs()
+
+</script>
