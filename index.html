@@ -29,11 +29,12 @@
 	<link rel="icon" href="/favicon.png">
 
   <script src="js/everpolate.js"></script>
+  <script src="js/smoothscroll.js"></script>
 	<script src="js/main.js"></script>
 
 </head>
 <!-- <body class="mobile"> -->
-<body>
+<body class="loading">
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
@@ -59,18 +60,282 @@
 
     <div id="graphics">
       <div id="about-graphics">
-        <div id="block1" class="block"></div>
-        <div id="block2" class="block"></div>
-        <div id="block3" class="block"></div>
-        <div id="block4" class="block"></div>
+        <img id="block1" 
+          class="block parallax"
+          src="img/phone-silhoette.svg"
+          parallax-translate-opacity="[[0,50,400], [1,1,0]]"
+          parallax-translate-x="[[0,400], [0,200]]"
+        />
 
-        <div id="krft1"></div>
-        <div id="chillscape1"></div>
-        <div id="noiz1"></div>
-        <div id="noiz2"></div>
-        <div id="freq1"></div>
-        <div id="freq2"></div>
-        <div id="junglator1"></div>
+        <img id="block2" 
+          class="block parallax"
+          src="img/line.svg"
+          parallax-translate-opacity="[[0,50,400], [1,1,0]]"
+          parallax-translate-y="[[0,100], [0,-200]]"
+        ></img>
+
+        <img id="block3" 
+          class="block parallax"
+          src="img/icon-bg.svg"
+          parallax-translate-opacity="[[0,50,300], [1,1,0]]"
+          parallax-translate-x="[[0,400], [0,-200]]"
+        ></img>
+
+        <img id="block3" 
+          class="block parallax"
+          src="img/icon-logo.svg"
+          style="width: 66pt; left: 195pt; top: 130pt;"
+          parallax-translate-opacity="[[0,50,200], [1,1,0]]"
+          parallax-translate-scale="[[0,400], [1,0]]"
+        ></img>
+        
+        <img id="block5" 
+          class="block parallax"
+          src="img/me.jpg"
+          parallax-translate-opacity="[[0,50,400], [1,1,0]]"
+          parallax-translate-y="[[0,400], [0,-400]]"
+        ></img>
+
+        <img id="block4" 
+          class="block parallax"
+          src="img/rockettrail.svg"
+          style="width: 140pt; height: 140pt; left: 48pt; top: 369pt"
+          parallax-translate-opacity="[[0,50,200,400], [0.5,1,1,0]]"
+          parallax-translate-x="[[0,400], [0,200]]"
+          parallax-translate-y="[[0,400], [0,-200]]"
+        ></img>
+
+        <img id="block4" 
+          class="block parallax"
+          src="img/rocket.svg"
+          parallax-translate-opacity="[[0,50,400], [1,1,0]]"
+          parallax-translate-x="[[0,400], [0,200]]"
+          parallax-translate-y="[[0,400], [0,-200]]"
+        ></img>
+
+
+        <img 
+          class="block parallax"
+          src="img/stack1.svg"
+          style="width: 180pt; left: 40pt; top: 440pt;"
+          parallax-translate-opacity="[[0,400,500,900], [0,0,1,0]]"
+          parallax-translate-y="[[0,250,750], [0,0,-200]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/stack2.svg"
+          style="width: 180pt; left: 40pt; top: 440pt;"
+          parallax-translate-opacity="[[0,400,500,900], [0,0,1,0]]"
+          parallax-translate-y="[[0,250,750], [50,50,-300]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/stack3.svg"
+          style="width: 180pt; left: 40pt; top: 440pt;"
+          parallax-translate-opacity="[[0,400,500,900], [0,0,1,0]]"
+          parallax-translate-y="[[0,250,750], [100,100,-400]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/graph.svg"
+          style="width: 45pt; left: 50pt; top: 200pt;"
+          parallax-translate-y="[[0,420,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/design.svg"
+          style="width: 45pt; left: 70pt; top: 422pt;"
+          parallax-translate-y="[[0,370,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/talk.svg"
+          style="width: 70pt; left: 0pt; top: 300pt;"
+          parallax-translate-y="[[0,410,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/ux.svg"
+          style="width: 75pt; left: 200pt; top: 235pt;"
+          parallax-translate-y="[[0,330,800], [0,0,-600]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/code.svg"
+          style="width: 60pt; left: 160pt; top: 375pt;"
+          parallax-translate-y="[[0,400,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/network.svg"
+          style="width: 60pt; left: 110pt; top: 333pt;"
+          parallax-translate-y="[[0,350,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <img 
+          class="block parallax"
+          src="img/cloud.svg"
+          style="width: 60pt; left: 200pt; top: 520pt;"
+          parallax-translate-y="[[0,320,800], [0,0,-800]]"
+          parallax-translate-opacity="[[0,400,500,800], [0,0,1,0]]"
+        ></img>
+
+        <div id="krft1"
+          class="parallax"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[-200,400], [0,-40]]"
+        ></div>
+
+        <div
+          style="top: 500px; margin-left: 150pt; width: 150px; height: 150px;"
+          class="parallax krfttriangle gradient1"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-150,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [0,300]]"
+        ></div>
+
+        <div
+          style="top: 450px; margin-left: -50pt; width: 130px; height: 130px; z-index: 1000"
+          class="parallax krfttriangle gradient2"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-100,0,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [100,500]]"
+        ></div>
+
+        <div
+          style="top: 400px; margin-left: 100pt; width: 180px; height: 180px; z-index: 1000"
+          class="parallax krftdiamond gradient3"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-100,0,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [100,500]]"
+        ></div>
+
+        <div
+          style="top: 580px; margin-left: 150pt; width: 90px; height: 90px; z-index: 1000"
+          class="parallax krfttriangle gradient5"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-100,0,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,50,200],[-100,0,300]]"
+          parallax-translate-rotate="[[0,300], [180,180]]"
+        ></div>
+
+        <div
+          style="top: 10px; margin-left: 40pt; width: 90px; height: 90px; z-index: 1000"
+          class="parallax krfttriangle gradient4"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-50,0,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,75,200],[-50,50,300]]"
+        ></div>
+
+        <div
+          style="top: 10px; margin-left: 80pt; width: 150px; height: 150px; z-index: 1000"
+          class="parallax krftdiamond gradient3"
+          parallax-anchor-el="#krft"
+          parallax-translate-opacity="[[-50,0,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,200],[50,300]]"
+        ></div>
+
+        <div id="chillscape1"
+          class="parallax"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-100,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [50,150]]"
+          parallax-translate-y="[[0,300], [0,-300]]"
+        ></div>
+
+        <div
+          class="chillscapebubble parallax gradient1"
+          style="top: 50pt; margin-left: -20pt;"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [200,-300]]"
+        ></div>
+
+        <div
+          class="chillscapebubble parallax gradient2"
+          style="top: 0pt; margin-left: 200pt; width: 100pt; height: 100pt;"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [0,-600]]"
+        ></div>
+
+        <div
+          class="chillscapebubble parallax gradient3"
+          style="top: 0pt; margin-left: 5pt; width: 70pt; height: 70pt;"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [0,-700]]"
+        ></div>
+
+        <div
+          class="chillscapebubble parallax gradient4"
+          style="top: 40pt; margin-left: -15pt; width: 100pt; height: 100pt;"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [0,-1000]]"
+        ></div>
+
+        <div
+          class="chillscapebubble parallax gradient5"
+          style="top: 160pt; margin-left: 220pt; width: 70pt; height: 70pt;"
+          parallax-anchor-el="#chillscape"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [0,-900]]"
+        ></div>
+
+        <div id="noiz1"
+          class="parallax"
+          parallax-anchor-el="#noiz"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [10,100]]"
+          parallax-translate-y="[[0,300], [0,-300]]"
+        ></div>
+        <div id="noiz2"
+          class="parallax"
+          parallax-anchor-el="#noiz"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [-50,0]]"
+          parallax-translate-y="[[0,300], [0,-300]]"
+        ></div>
+
+        <div id="freq1"
+          class="parallax"
+          parallax-anchor-el="#freq"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-y="[[0,300], [0,-350]]"
+        ></div>
+
+        <div id="freq2"
+          class="parallax"
+          parallax-anchor-el="#freq"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [0,-50]]"
+          parallax-translate-y="[[0,300], [0,-300]]"
+        ></div>
+
+        <div id="junglator1"
+          class="parallax"
+          parallax-anchor-el="#junglator"
+          parallax-translate-opacity="[[-200,-50,200,400], [0,1,1,0]]"
+          parallax-translate-x="[[0,300], [0,50]]"
+          parallax-translate-y="[[0,300], [0,-300]]"
+        ></div>
+
 
       </div>
     </div>
@@ -82,15 +347,15 @@
       <div class="six columns" id="me">
         <div id="firstText">
           <h4>
-  		  		I am a creative technologist with over 10 years experience in full-stack development, UX, product development and mobile.
+            I am a creative technologist with over 10 years experience in full-stack development, UX, product development, web and mobile.
           </h4>
           
           <p>
-  			  		I specialise in JavaScript, React Native and Node.js, as well as having experience in Objective C. I have a passion for creating beautiful, well thought out products that provide a functional and joyful experience.
+  			  	I specialise in JavaScript, React Native, Node.js and web technologies as well as having experience in Objective C. I have a passion for creating beautiful, well thought out products that provide a functional and joyful experience. 
   				</p>
 
   				<p>
-  					I have created products ranging from music making apps to retail websites, with accolades including multiple “App Of The Day” promotions on the Apple App Store, features on tech sites including TechCrunch and Mashable, reaching 100k downloads and an App Design Award.
+  					I have created products ranging from music making apps to retail websites, with accolades including multiple “App Of The Day” promotions on the Apple App Store, features on tech sites such as TechCrunch and Mashable, reaching 100k downloads and an App Design Award. 
   				</p>
         </div>
 
@@ -101,6 +366,8 @@
   					<li>Strong understanding of user behaviour and high attention-to-detail to deliver outstanding user experiences</li>
   					<li>Ability to prototype ideas quickly and use internal and external feedback to iterate concepts into fully-featured products</li>
   					<li>Imagination and passion to take ideas outside their typical paradigms and create cutting-edge technology</li>
+            <li>Successfully promoted products post launch, acquired press coverage and managed a community of advocates</li>
+            <li>Communication skills required to work with clients in person and remotely and provide innovative solutions</li>
   					<li>Proficient in multiple creative disciplines including photography, music production, branding & UI design</li>
   				</ul>
         </div>
@@ -352,6 +619,16 @@
       </div>
     </div>
 
+<!--     <div class="row" id="experience">
+      <div class="two columns navbuffer">
+        <span><br /></span>
+      </div>
+      <div class="six columns">
+        <hr />
+        <h4>Other Experience</h4>
+        <p>Got an exciting project you'd like to hire me for? Get in touch!</p>
+      </div>
+    </div> -->
 
     <div class="row" id="contact">
     	<div class="two columns navbuffer">
@@ -392,7 +669,6 @@
   </div>
 
   <div id="wave"> 
-
   </div>
 
 <!-- End Document

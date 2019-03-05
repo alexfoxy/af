@@ -1,0 +1,66 @@
+<style>
+  
+</style>
+
+
+<body>
+<script src="js/three.js"></script>
+
+
+
+</body>
+
+<script type="text/javascript">
+  var camera, scene, renderer;
+  var geometry, material, pyramid
+
+  init();
+  animate();
+
+  function init() {
+
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+    camera.position.z = 3;
+
+    scene = new THREE.Scene();
+
+    var pyramidgeometry = new THREE.CylinderGeometry(0, 0.8, 1, 4, false);
+    var pyramidmaterial = new THREE.MeshBasicMaterial({ 
+    opacity: 0.25, 
+    transparent: true,
+    color: 0xff00ff, 
+   side: THREE.DoubleSide, 
+    // depthWrite: false
+});
+
+     // new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.5});
+    pyramid = new THREE.Mesh(pyramidgeometry, pyramidmaterial);
+    // pyramid.position.set(-4.0,0,0);
+    scene.add(pyramid);
+
+    // geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+    // material = new THREE.MeshNormalMaterial();
+
+    // mesh = new THREE.Mesh( geometry, material );
+    // scene.add( mesh );
+
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+  }
+
+  function animate() {
+
+    requestAnimationFrame( animate );
+
+    // mesh.rotation.x += 0.01;
+    // mesh.rotation.y += 0.02;
+    pyramid.rotation.y += 0.01;
+
+    renderer.render( scene, camera );
+
+  }
+
+
+</script>

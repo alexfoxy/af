@@ -1,12 +1,10 @@
 <style>
   body,html{margin:0;padding:0;}
-
-
+  
 .object {
   margin-left: 250px;
   height: 100px;
   width: 300px;
-  top: 200px;
   position: fixed;
   background: red;
   mix-blend-mode: overlay;
@@ -20,8 +18,9 @@
   background: blue;
 }
 
-.parallax {
+.doc {
   height: 20000pt;
+  width: 400pt;
 }
 
 
@@ -30,13 +29,37 @@
 
 <body>
 <script src="js/everpolate.js"></script>
+<script src="js/smoothscroll.js"></script>
 
-<p style="padding-top: 300pt">Hello</p>
+<div class="doc">
+  <div
+    class="object parallax" 
+    id="object1"
+    parallax-translate-opacity="[[0,200],[1,0]]"
+    parallax-translate-x="[[0,200],[50,0]]"
+    parallax-translate-y="[[0,200],[50,0]]"
+    parallax-translate-rotate="[[0,200],[50,0]]"
+  ></div>
 
-<div class="parallax">
-  <div class="object" id="object1"'></div>
-  <div class="object" id="object2"'></div>
-  <div class="object" id="object3"'></div>
+  <div
+    class="object parallax" 
+    id="object2"
+    parallax-anchor-el="triggerEl"
+    parallax-translate-opacity="[[-200, -150],[0,1]]"
+    parallax-translate-x="[[0,200],[50,0]]"
+    parallax-translate-scale="[[0,200,100000],[0.5,1,1]]"
+  ></div>
+
+
+  <p style="margin-top: 100px" class="parallax" 
+    parallax-translate-y="[[0,200],[50,0]]"
+  >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce feugiat sapien elit, ut auctor orci vehicula sit amet. Donec blandit erat mauris, vitae placerat tellus lobortis sit amet. Aenean eleifend neque lorem, eget fermentum elit gravida nec.</p>
+
+    <p style="margin-top: 100px" class="parallax" 
+    parallax-translate-y="[[0,200],[0,-100]]"
+    id="triggerEl">Pellentesque varius tellus sit amet facilisis rhoncus. Mauris posuere, lectus at interdum luctus, orci ipsum tincidunt ipsum, nec ultrices libero orci et dolor. Cras malesuada blandit libero vel lobortis. Maecenas vel felis at ipsum maximus auctor. Phasellus at euismod velit, tempus volutpat eros. Phasellus id orci ac libero elementum hendrerit vel sit amet leo.</p>
+
 </div>
 
 
@@ -45,37 +68,89 @@
 <script type="text/javascript">
 
 
-  var positionData = {
-    blueBlock: function(el, y) {
-      el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
-      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,-400]) }px)`
-    },
-    // object2: function(el, y) {
-    //   el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
-    //   el.style.transform = `translateY(${ everpolate.linear(y, [0,400], [0,-400]) }px)`
-    // },
-    // object3: function(el, y) {
-    //   el.style.opacity = everpolate.linear(y, [0,200,400], [0,1,0])
-    //   el.style.transform = `rotate(${ everpolate.linear(y, [0,400], [0,-400]) }deg)`
-    // }
-  }
+  var parallaxObjects = []
 
-  const els = {
-
-  }
-
-  function updateObjs() {
-    for(var o in positionData) {
-      els[o] = els[o] || document.getElementById(o)
-      var fn = positionData[o]
-      fn(els[o], window.scrollY)
+  document.querySelectorAll(".parallax").forEach(function(el) {
+    var o = {
+      el: el
     }
+
+    for(var i=0; i<el.attributes.length; i++) {
+      var a = el.attributes[i]
+      var bits = a.name.split("-")
+      if(bits[0] === "parallax") {
+        o[a.name] = a.name === "parallax-anchor-el" ? document.getElementById(a.value) : JSON.parse(a.value)
+      }
+    }
+
+    parallaxObjects.push(o)
+  })
+
+  function updateparallaxObjects(y) {
+    parallaxObjects.forEach(function(o) {
+      var transformString = ""
+      var offsetTop = o["parallax-anchor-el"] ? o["parallax-anchor-el"].offsetTop : 0
+      var _y = y-offsetTop
+
+      if(o["parallax-translate-opacity"]) {
+        var arr = o["parallax-translate-opacity"]
+        var opacity = everpolate.linear(_y,arr[0],arr[1])
+
+        if(opacity<=0) {
+          o.el.style.opacity = 0
+          return
+        } else {
+          o.el.style.opacity = Math.min(opacity,1)
+        }
+      }  
+
+      if(o["parallax-translate-x"]) {
+        var arr = o["parallax-translate-x"]
+        var v = everpolate.linear(_y,arr[0],arr[1])
+        transformString += `translateX(${v}px)`
+      }
+
+      if(o["parallax-translate-y"]) {
+        var arr = o["parallax-translate-y"]
+        var v = everpolate.linear(_y,arr[0],arr[1])
+        transformString += `translateY(${v}px)`
+      }
+
+      if(o["parallax-translate-scale"]) {
+        var arr = o["parallax-translate-scale"]
+        var v = everpolate.linear(_y,arr[0],arr[1])
+        transformString += `scale(${v})`
+      }
+
+      if(o["parallax-translate-rotate"]) {
+        var arr = o["parallax-translate-rotate"]
+        var v = everpolate.linear(_y,arr[0],arr[1])
+        transformString += `rotate(${v}deg)`
+      }
+
+      o.el.style.transform = transformString
+    })
   }
 
   document.addEventListener('scroll', function(x) {
-    updateObjs()
+    updateparallaxObjects(window.scrollY)
   }, false);
 
-  updateObjs()
+  // var lastETime = Date.now()
+
+  // document.addEventListener('wheel', function(e) {
+  //   console.log(Date.now() - lastETime)
+  //   lastETime = Date.now()
+  //   if(e.deltaX === 0) {
+  //     e.preventDefault();
+  //     window.scrollTo({
+  //       top: window.scrollY + e.wheelDelta,
+  //       behavior: 'smooth'
+  //     });
+  //   }
+  // }, false);
+
+
+  updateparallaxObjects(0)
 
 </script>

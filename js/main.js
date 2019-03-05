@@ -51,212 +51,98 @@ window.gen_mail_to_link = function(lhs,rhs,subject) {
 }
 
 
-var positionData = {
-    block1: function(el, y) {
-      const o = everpolate.linear(y, [0,50,400], [1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
+var parallaxObjects = []
 
-      el.style.opacity = o
-      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,200]) }px)`
-    },
-    block2: function(el, y) {
-      const o = everpolate.linear(y, [0,50,400], [1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-      el.style.transform = `translateY(${ everpolate.linear(y, [0,400], [0,-200]) }px)`
-    },
-    block3: function(el, y) {
-      const o = everpolate.linear(y, [0,50,400], [1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-      el.style.transform = `translateX(${ everpolate.linear(y, [0,400], [0,-200]) }px)`
-    },
-    block4: function(el, y) {
-      const o = everpolate.linear(y, [0,50,400], [1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-      el.style.transform = `scale(${ everpolate.linear(y, [0,400], [1,0.5]) })`
-    },
-    krft1: function(el, y) {
-      const triggerEl = document.getElementById("krft")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `translateY(${ everpolate.linear(y, p, [100,100,-100]) }px)`
-    },
-    chillscape1: function(el, y) {
-      const triggerEl = document.getElementById("chillscape")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [0,0,100]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
-      `
-    },
-    noiz1: function(el, y) {
-      const triggerEl = document.getElementById("noiz")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [0,0,50]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
-      `
-    },
-    noiz2: function(el, y) {
-      const triggerEl = document.getElementById("noiz")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [-150,-20,0]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
-      `
-    },
-    freq1: function(el, y) {
-      const triggerEl = document.getElementById("freq")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [-150,-20,0]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-400]) }px)
-      `
-    },
-    freq2: function(el, y) {
-      const triggerEl = document.getElementById("freq")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [-150,-20,20]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
-      `
-    },
-    junglator1: function(el, y) {
-      const triggerEl = document.getElementById("junglator")
-      const offsetTop = triggerEl.offsetTop
-
-      const a = [0,offsetTop-300,offsetTop-100,offsetTop+200,offsetTop+300]
-
-      const o = everpolate.linear(y, a, [0,0,1,1,0])
-      if(o <= 0) {
-        el.style.opacity = 0
-        return
-      }
-
-      el.style.opacity = o
-
-      const p = [0,offsetTop-300,offsetTop+300]
-      el.style.transform = `
-        translateX(${ everpolate.linear(y, p, [0,0,50]) }px) 
-        translateY(${ everpolate.linear(y, p, [250,250,-300]) }px)
-      `
-    },
-
-}
-
-const els = {
-
-}
-
-function updateObjs(y) {
-    for(var o in positionData) {
-      els[o] = els[o] || document.getElementById(o)
-      var fn = positionData[o]
-      fn(els[o], y)
+function populateParallaxObjects() {
+  document.querySelectorAll(".parallax").forEach(function(el) {
+    var o = {
+      el: el
     }
+
+    for(var i=0; i<el.attributes.length; i++) {
+      var a = el.attributes[i]
+      var bits = a.name.split("-")
+      if(bits[0] === "parallax") {
+        o[a.name] = a.name === "parallax-anchor-el" ? document.querySelector(a.value) : JSON.parse(a.value)
+      }
+    }
+
+    parallaxObjects.push(o)
+  })
 }
+
+function updateparallaxObjects(y) {
+  parallaxObjects.forEach(function(o) {
+    var transformString = ""
+    var offsetTop = o["parallax-anchor-el"] ? o["parallax-anchor-el"].offsetTop : 0
+    var _y = y-offsetTop
+
+    if(o["parallax-translate-opacity"]) {
+      var arr = o["parallax-translate-opacity"]
+      var opacity = everpolate.linear(_y,arr[0],arr[1])
+
+      if(opacity<=0) {
+        o.el.style.opacity = 0
+        return
+      } else {
+        o.el.style.opacity = Math.min(opacity,1)
+      }
+    }  
+
+    if(o["parallax-translate-x"]) {
+      var arr = o["parallax-translate-x"]
+      var v = everpolate.linear(_y,arr[0],arr[1])
+      transformString += `translateX(${v}px)`
+    }
+
+    if(o["parallax-translate-y"]) {
+      var arr = o["parallax-translate-y"]
+      var v = everpolate.linear(_y,arr[0],arr[1])
+      transformString += `translateY(${v}px)`
+    }
+
+    if(o["parallax-translate-scale"]) {
+      var arr = o["parallax-translate-scale"]
+      var v = everpolate.linear(_y,arr[0],arr[1])
+      transformString += `scale(${v})`
+    }
+
+    if(o["parallax-translate-rotate"]) {
+      var arr = o["parallax-translate-rotate"]
+      var v = everpolate.linear(_y,arr[0],arr[1])
+      transformString += `rotate(${v}deg)`
+    }
+
+    o.el.style.transform = transformString
+  })
+}
+
+function checkOrientation() {
+  const ratio = window.innerWidth/window.innerHeight
+  const isMobile = ratio<0.75
+
+  if(isMobile) {
+    document.body.classList.remove("desktop")
+    document.body.classList.add("mobile")
+  } else {
+    document.body.classList.remove("mobile")
+    document.body.classList.add("desktop")
+  }
+
+  window.__isMobile = isMobile
+}
+
+// window.addEventListener("resize", checkOrientation, false);
+window.addEventListener("orientationchange", checkOrientation, false);
+
 
 
 window.onload = function() {
-    const ratio = window.innerWidth/window.innerHeight
-    const isMobile = ratio<0.75
-
-    if(isMobile) {
-      document.body.classList.add("mobile")
-    } else {
-      document.body.classList.add("desktop")
-    }
-
+    checkOrientation()
+    document.body.classList.remove("loading")
     document.body.classList.add("loaded")
 
+    populateParallaxObjects()
     setUpExpandButtons()
     setUpAnchorLinks()
 
@@ -264,7 +150,7 @@ window.onload = function() {
     const contactEl = document.getElementById("contact")
     
     document.addEventListener('scroll', function(x) {
-        if(!isMobile) updateObjs(window.scrollY)
+        if(!window.__isMobile) updateparallaxObjects(window.scrollY)
 
         if(window.scrollY > 50) {
           document.body.classList.add("scrolled")
@@ -278,12 +164,10 @@ window.onload = function() {
           selectNav("#projects")
         } else {
           selectNav("#me")
-        }
-
-        
+        }        
     }, false)
 
-    if(!isMobile) updateObjs(window.scrollY)
+    if(!window.__isMobile) updateparallaxObjects(window.scrollY)
 
   
 
