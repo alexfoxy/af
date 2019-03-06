@@ -31,6 +31,10 @@ img {
     justify-content: space-between;
 }
 
+.mobile nav .nav_hide {
+    display: none;
+}
+
 #me {
 	padding-top: 8em;
 }
@@ -177,14 +181,24 @@ li {
     /*padding-right: 180pt;*/
 }
 
-#links a {
-    font-size: 2rem;
+#links .link {
+    font-size: 12pt;
     color: white;
-    padding: 5pt;
-    display: block;
-    text-align: center;
-    margin: 10pt 0;
-    text-decoration: none;
+    padding: 5pt 0;
+    text-align: left;
+    /* margin: 10pt 0; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#links .link img {
+    height: 30pt;
+    margin-right: 10pt;
+}
+
+#links a {
+    color: black;
 }
 
 
@@ -192,42 +206,10 @@ li {
     opacity: 0.7;
 }
 
-.desktop #links a {
-    display: table;
-    padding: 6pt 11pt;
-}
+
 
 #contact {
     /*padding-bottom: 50pt;*/
-}
-
-#contactMe {
-    font-size: 4rem;
-    font-weight: 800;
-    background: linear-gradient(45deg, #1d48bac4, #7000ffab);
-    /*margin-left: -100pt;*/
-}
-
-.desktop #contactMe  {
-    font-size: 3rem;
-}
-
-#bitBucketLink {
-    background: linear-gradient(45deg, #37e3cb9c, #006dffbf);
-    /*margin-left: 210pt;*/
-    /*margin-top: 75pt;*/
-}
-
-#gitHubLink {
-    background: linear-gradient(45deg, #f0267366, #e17458de);
-    /*margin-left: 190pt;*/
-    /*margin-top: 110pt;*/
-}
-
-#instagramLink {
-    background: linear-gradient(45deg, #eb686dc4, #7000ffab);
-    /*margin-left: 230pt;*/
-    /*margin-top: 145pt;*/
 }
 
 /*.mobile #links {
@@ -368,15 +350,14 @@ h6 {
 }
 
 #wave {
-    margin-top: 50pt;
+    margin-top: 100pt;
     height: 135px;
     overflow: hidden;
-    background: url(/img/wave.png);
-    height: 135px;
-    /*width: 100vw;*/
-    background-size: 180px;
-    background-repeat: repeat-x;
-    background-position: bottom left;
+    background: url(/img/pattern.jpg);
+    height: 290px;
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: top;
 }
 
 /*#waves .wave {
@@ -385,13 +366,20 @@ h6 {
     bottom: 0;
 }
 */
-.mobile #wave {
+/*.mobile #wave {
     background: url(/img/wave.png);
     height: 75px;
     background-size: 95px;
     background-repeat: repeat-x;
     background-position: bottom left;
     margin-top: 20pt;
+}*/
+
+.mobile .row #block5 {
+    margin-left: 15vw !important;
+    width: 60vw  !important;
+    height: 60vw !important;
+    bottom: -70vw !important;
 }
 
 #block1 {
@@ -454,6 +442,7 @@ h6 {
     background-size: cover;
     top: 60pt;
     z-index: 200;
+    border-radius: 10pt;
     opacity: 0;
     z-index: 2000;
 }

@@ -1,3 +1,4 @@
+
 function selectNav(hash) {
     var anchorlinks = document.querySelectorAll('a[href^="#"]')
  
@@ -113,6 +114,12 @@ function updateparallaxObjects(y) {
       transformString += `rotate(${v}deg)`
     }
 
+    if(o["parallax-filter-hue"]) {
+      var arr = o["parallax-filter-hue"]
+      var v = everpolate.linear(_y,arr[0],arr[1])
+      o.el.style.filter = `hue-rotate(${v}deg)`
+    }
+
     o.el.style.transform = transformString
   })
 }
@@ -148,7 +155,8 @@ window.onload = function() {
 
     const projectsEl = document.getElementById("projects")
     const contactEl = document.getElementById("contact")
-    
+    const historyEl = document.getElementById("history")
+
     document.addEventListener('scroll', function(x) {
         if(!window.__isMobile) updateparallaxObjects(window.scrollY)
 
@@ -160,6 +168,8 @@ window.onload = function() {
 
         if(window.scrollY > contactEl.offsetTop-(window.innerHeight/2)) {
           selectNav("#contact")
+        } else if(window.scrollY > historyEl.offsetTop-(window.innerHeight/2)) {
+          selectNav("#history")
         } else if(window.scrollY > projectsEl.offsetTop-(window.innerHeight/2)) {
           selectNav("#projects")
         } else {
