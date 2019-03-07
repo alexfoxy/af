@@ -13,6 +13,14 @@ img {
     -webkit-image-orientation: from-image;
 }
 
+#prism {
+    background: url(/img/prism.jpg) left top;
+    /*transform: scale(0.5);*/
+    /*transform-origin: left center;*/
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
 #logo {
 	height: 4em;
 	display: block;
@@ -22,6 +30,14 @@ img {
 
 #navbar {
     position: fixed;
+}
+
+.mobile #navbar #prism {
+    display: none;
+}
+
+.desktop #navbar #logo {
+    display: none;
 }
 
 .mobile #navbar {
@@ -127,7 +143,14 @@ nav a.selected {
 .projectHeader {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 1.5em;
+}
+
+.projectHeaderLeft {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .projectHeader h5 {
@@ -135,9 +158,14 @@ nav a.selected {
     line-height: 10pt;
 }
 
-.projectHeader a {
-    font-size: 9pt;
-    text-decoration: none;
+.projectHeader .projectLinks {
+    display: flex;
+    color: rgb(240,240,240);
+}
+
+.projectHeader .projectLinks a {
+    font-size: 10pt;
+    margin: 0 5pt;
 }
 
 .screenShot {
@@ -562,11 +590,11 @@ h6 {
 }
 
 .gradient3 {
-    background: linear-gradient(0deg, rgba(3, 107, 229, 0.6), rgba(125, 49, 182, 0.5));
+    background: linear-gradient(0deg, rgba(3, 107, 229, 0.69), rgba(156, 42, 242, 0.75));
 }
 
 .gradient4 {
-    background: linear-gradient(0deg, rgba(229, 192, 3, 0.6), rgb(244, 161, 242));
+    background: linear-gradient(0deg, rgba(229, 192, 3, 0.74), rgb(243, 120, 240));
 }
 
 .gradient5 {

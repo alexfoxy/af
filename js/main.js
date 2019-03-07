@@ -143,11 +143,8 @@ function checkOrientation() {
 window.addEventListener("orientationchange", checkOrientation, false);
 
 
-
 window.onload = function() {
     checkOrientation()
-    document.body.classList.remove("loading")
-    document.body.classList.add("loaded")
 
     populateParallaxObjects()
     setUpExpandButtons()
@@ -156,6 +153,26 @@ window.onload = function() {
     const projectsEl = document.getElementById("projects")
     const contactEl = document.getElementById("contact")
     const historyEl = document.getElementById("history")
+
+
+    var h = 123/2.8
+    var w = 142/2.8
+
+    const prism = document.getElementById("prism")
+
+    prism.style.width = `${w}pt`
+    prism.style.height = `${h}pt`
+    prism.style["background-size"] = `${w}pt`
+
+    function setFrame(frame) {
+      var f = frame%47
+      prism.style["background-position"] = `0 -${f*h}pt`
+    }
+
+    setTimeout(() => {
+      document.body.classList.remove("loading")
+      document.body.classList.add("loaded")
+    }, 200)
 
     document.addEventListener('scroll', function(x) {
         if(!window.__isMobile) updateparallaxObjects(window.scrollY)
@@ -175,27 +192,11 @@ window.onload = function() {
         } else {
           selectNav("#me")
         }        
+
+        setFrame(Math.floor(window.scrollY/30))
     }, false)
 
     if(!window.__isMobile) updateparallaxObjects(window.scrollY)
 
-  
-
-
-    // document.addEventListener('scroll', function(x) {
-    //     for(var o in positionData) {
-    //       var el = document.getElementById(o)
-    //       var fn = positionData[o]
-    //       fn(el, window.scrollY)
-    //     }
-
-    //     if(window.scrollY > (contactEl.top - (window.innerHeight/2))) {
-    //         selectNav("#contact")
-    //     } else if(window.scrollY > (projectsEl.top - (window.innerHeight/2))) {
-    //         selectNav("#projects")
-    //     } else {
-    //         selectNav("#me")
-    //     }
-    // }, false);
 
 }

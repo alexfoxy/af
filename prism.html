@@ -1,0 +1,41 @@
+
+
+
+<style>
+
+#prism {
+	background: url(img/prism.jpg) left top;
+}
+
+</style>
+
+<body>
+	
+	<div id='prism'></div>
+
+</body>
+
+
+<script>
+	var h = 123/2
+	var w = 142/2
+
+	const prism = document.getElementById("prism")
+
+	prism.style.width = `${w}pt`
+	prism.style.height = `${h}pt`
+	prism.style["background-size"] = `${w}pt`
+
+	function setFrame(frame) {
+		var f = frame%47
+		prism.style["background-position"] = `0 -${f*h}pt`
+	}
+
+	window.setFrame = setFrame
+
+	var i = 0
+	setInterval(() => {
+		setFrame(i)
+		i++
+	}, 50)
+</script>
