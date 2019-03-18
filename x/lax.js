@@ -1,4 +1,3 @@
-lax.js
 //
 // lax v0.0.1 (Alex Fox)
 // Simple & light weight vanilla javascript plugin to create beautiful animations things when you scrolllll!!
