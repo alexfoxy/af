@@ -1,4 +1,3 @@
-lax.js
 //
 // lax v0.0.1 (Alex Fox)
 // Simple & light weight vanilla javascript plugin to create beautiful animations things when you scrolllll!!
@@ -19,6 +18,8 @@ lax.js
     var lax = {
       elements: []
     }
+
+    let lastY = 0;
 
     const transforms = {
       "data-lax-opacity": function(style, v) { style.opacity = v },
@@ -176,7 +177,7 @@ lax.js
         el.attributes.removeNamedItem("data-lax-preset")
       }
 
-      const optimise = !(el.attributes["data-lax-optimize"] && el.attributes["data-lax-optimize"].value == 'false')
+      const optimise = !(el.attributes["data-lax-optimize"] && el.attributes["data-lax-optimize"].value === 'false')
       if(optimise) el.style["-webkit-backface-visibility"] = "hidden"
       if(el.attributes["data-lax-optimize"]) el.attributes.removeNamedItem("data-lax-optimize")
 
@@ -211,6 +212,7 @@ lax.js
       }
 
       lax.elements.push(o)
+      lax.updateElement(o)
     }
 
     lax.populateElements = function() {
@@ -222,42 +224,40 @@ lax.js
       document.querySelectorAll(selector).forEach(this.addElement)
     }
 
-    var lastScroll = 0
+    lax.updateElement = function(o) {
+      const y = lastY
+      var r = o["data-lax-anchor-top"] ? o["data-lax-anchor-top"]-y : y
+
+      var style = {
+        transform: "",
+        filter: ""
+      }
+
+      for(var i in o.transforms) {
+        var arr = o.transforms[i]
+        var t = transforms[i]
+        var v = intrp(arr, r)
+
+        if(!t) {
+          console.error("lax: " + i + " is not supported")
+          return
+        }
+
+        t(style, v)
+      }
+
+      for(let k in style) {
+        if(style.opacity === 0) { // if opacity 0 don't update
+          o.el.style.opacity = 0 
+        } else {
+          o.el.style[k] = style[k]
+        }
+      }
+    }
 
     lax.update = function(y) {
-      var momentum = lastScroll-y
-      lastScroll = y
-
-      lax.elements.forEach(function(o) {
-        var transformString = ""
-        var r = o["data-lax-anchor-top"] ? o["data-lax-anchor-top"]-y : y
-
-        var style = {
-          transform: "",
-          filter: ""
-        }
-
-        for(var i in o.transforms) {
-          var arr = o.transforms[i]
-          var t = transforms[i]
-          var v = intrp(arr, r)
-
-          if(!t) {
-            console.error("lax: " + i + " is not supported")
-            return
-          }
-
-          t(style, v)
-        }
-
-        for(let k in style) {
-          if(style.opacity === 0) { // if opacity 0 don't update
-            o.el.style.opacity = 0 
-          } else {
-            o.el.style[k] = style[k]
-          }
-        }
-      })
+      lastY = y
+      lax.elements.forEach(lax.updateElement)
     }
 
     return lax;
